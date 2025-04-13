@@ -20,6 +20,8 @@ The application architecture is designed using the following microservices:
 - **Makeline-Service**: Processes and completes orders by reading from the order queue.
 - **AI-Service**: Generates product descriptions and images using GPT-4 and DALL-E models.
 - **Database**: MongoDB for persisting order and product data.
+- **Virtual-customer**: Simulates order creation on a scheduled basis (Rust).
+- **Virtual-worker**: Simulates order completion on a scheduled basis (Rust).
 
 ---
 
@@ -37,8 +39,6 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 - **Backend**: The **Order-Service** handles order creation and interacts with the **Order Queue Service** (Azure Service Bus) to ensure smooth order processing. The **Makeline-Service** listens to the queue and completes the orders.
 - **Product Data**: The **Product-Service** manages CRUD operations for products stored in MongoDB.
 - **AI Integration**: The **AI-Service** generates AI-powered product descriptions and images using **Azure OpenAI Services** (GPT-4 and DALL-E).
-- **Virtual-customer**: Simulates order creation on a scheduled basis (Rust)
-- **Virtual-worker**: Simulates order completion on a scheduled basis (Rust)
 
 ---
 
