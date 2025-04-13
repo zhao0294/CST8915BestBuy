@@ -25,7 +25,7 @@ The application architecture is designed using the following microservices:
 
 ## **Architecture Diagram**
 
-![Architecture Diagram](path/to/your/architecture-diagram.png)
+![Architecture Diagram](8915Final.jpg)
 
 ---
 
