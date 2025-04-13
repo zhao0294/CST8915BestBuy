@@ -37,6 +37,8 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 - **Backend**: The **Order-Service** handles order creation and interacts with the **Order Queue Service** (Azure Service Bus) to ensure smooth order processing. The **Makeline-Service** listens to the queue and completes the orders.
 - **Product Data**: The **Product-Service** manages CRUD operations for products stored in MongoDB.
 - **AI Integration**: The **AI-Service** generates AI-powered product descriptions and images using **Azure OpenAI Services** (GPT-4 and DALL-E).
+- **Virtual-customer**: Simulates order creation on a scheduled basis (Rust)
+- **Virtual-worker**: Simulates order completion on a scheduled basis (Rust)
 
 ---
 
@@ -89,17 +91,17 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 
 ## **Table of Microservice Repositories**
 
-| **Service** | **Description** | Github Repo |
-| --- | --- | --- |
-| `store-front` | Web app for customers to place orders (Vue.js) | [store-front](https://github.com/ramymohamed10/store-front-L8) |
-| `store-admin` | Web app used by store employees to view orders in queue and manage products (Vue.js) | [store-admin](https://github.com/ramymohamed10/store-admin-L8) |
-| `order-service` | This service is used for placing orders (Javascript) | [order-service](https://github.com/zhao0294/order-service-bestbuy) |
-| `product-service` | This service is used to perform CRUD operations on products (Rust) | [product-service](https://github.com/ramymohamed10/product-service-L8) |
-| `makeline-service` | This service handles processing orders from the queue and completing them (Golang) | [makeline-service](https://github.com/zhao0294/makeline-service-bestbuy) |
-| `ai-service` | Optional service for adding generative text and graphics creation (Python) | [ai-service](https://github.com/ramymohamed10/ai-service-L8) |
-| `mongodb` | MongoDB instance for persisted data | [mongodb](https://github.com/docker-library/mongo) |
-| `virtual-customer` | Simulates order creation on a scheduled basis (Rust) | [virtual-customer](https://github.com/ramymohamed10/virtual-customer-L8) |
-| `virtual-worker` | Simulates order completion on a scheduled basis (Rust) | [virtual-worker](https://github.com/ramymohamed10/virtual-worker-L8) |
+| **Service** | **Repository Link** |
+|---------------------|-------------------------------------------|
+| Store-Front | [store-front](https://github.com/ramymohamed10/store-front-L8) |
+| Store-Admin | [store-admin](https://github.com/ramymohamed10/store-admin-L8) |
+| Order-Service | [order-service](https://github.com/zhao0294/order-service-bestbuy) |
+| Product-Service | [product-service](https://github.com/ramymohamed10/product-service-L8) |
+| Makeline-Service |[makeline-service](https://github.com/zhao0294/makeline-service-bestbuy) |
+| AI-Service | [ai-service](https://github.com/ramymohamed10/ai-service-L8) |
+| Mongodb(Database) | [mongodb](https://github.com/docker-library/mongo) |
+| Virtual-customer  | [virtual-customer](https://github.com/ramymohamed10/virtual-customer-L8) |
+| Virtual-worker | [virtual-worker](https://github.com/ramymohamed10/virtual-worker-L8) |
 
 ---
 
