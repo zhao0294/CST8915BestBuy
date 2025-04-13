@@ -109,9 +109,9 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 |---------------------|-------------------------------------------|
 | Store-Front         | `<Docker Hub Link>`                       |
 | Store-Admin         | `<Docker Hub Link>`                       |
-| Order-Service       | `[congzhao0294/order-service]https://hub.docker.com/r/congzhao0294/order-service`                       |
+| Order-Service       | [congzhao0294/order-service](https://hub.docker.com/r/congzhao0294/order-service)                      |
 | Product-Service     | `<Docker Hub Link>`                       |
-| Makeline-Service    | `[congzhao0294/makeline-service]https://hub.docker.com/r/congzhao0294/makeline-service`                       |
+| Makeline-Service    | [congzhao0294/makeline-service](https://hub.docker.com/r/congzhao0294/makeline-service)                   |
 | AI-Service          | `<Docker Hub Link>`                       |
 | Database            | `<Docker Hub Link>`                       |
 
