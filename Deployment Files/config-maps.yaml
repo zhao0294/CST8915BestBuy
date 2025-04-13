@@ -1,7 +1,42 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: rabbitmq-enabled-plugins
+  name: order-service-config
 data:
-  rabbitmq_enabled_plugins: |
-    [rabbitmq_management,rabbitmq_prometheus,rabbitmq_amqp1_0].
+  ORDER_QUEUE_HOSTNAME: "bestbuynamespace.servicebus.windows.net"
+  ORDER_QUEUE_PORT: "5671"
+  USE_WORKLOAD_IDENTITY_AUTH: "True"
+  ORDER_QUEUE_NAME: "orders"
+  ORDER_QUEUE_TRANSPORT: "tls"
+  ORDER_QUEUE_RECONNECT_LIMIT: "10"
+  FASTIFY_ADDRESS: "0.0.0.0"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: makeline-service-config
+data:
+  ORDER_QUEUE_URI: "amqps://bestbuynamespace.servicebus.windows.net"
+  ORDER_QUEUE_TRANSPORT: "tls"
+  ORDER_QUEUE_NAME: "orders"
+  ORDER_DB_URI: "mongodb://mongodb:27017"
+  ORDER_DB_NAME: "orderdb"
+  ORDER_DB_COLLECTION_NAME: "orders"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: product-service-config
+data:
+  AI_SERVICE_URL: "http://ai-service:5001/"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: store-front-config
+data:
+  VUE_APP_ORDER_SERVICE_URL: "http://order-service:3000/"
+  VUE_APP_PRODUCT_SERVICE_URL: "http://product-service:3002/"
