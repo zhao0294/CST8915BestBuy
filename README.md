@@ -118,7 +118,6 @@ kubectl get services
 ## **Table of Microservice Repositories**
 
 | **Service** | **Repository Link** |
-
 |---------------------|-------------------------------------------|
 | Store-Front | `<GitHub Link>` |
 | Store-Admin | `<GitHub Link>` |
@@ -133,7 +132,6 @@ kubectl get services
 ## **Table of Docker Images**
 
 | **Service** | **Docker Image Link** |
-
 |---------------------|-------------------------------------------|
 | Store-Front | `<Docker Hub Link>` |
 | Store-Admin | `<Docker Hub Link>` |
