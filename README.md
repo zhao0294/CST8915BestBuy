@@ -120,19 +120,12 @@ kubectl get services
 | **Service** | **Repository Link** |
 
 |---------------------|-------------------------------------------|
-
 | Store-Front | `<GitHub Link>` |
-
 | Store-Admin | `<GitHub Link>` |
-
 | Order-Service | `<GitHub Link>` |
-
 | Product-Service | `<GitHub Link>` |
-
 | Makeline-Service | `<GitHub Link>` |
-
 | AI-Service | `<GitHub Link>` |
-
 | Database | `<GitHub Link>` |
 
 ---
@@ -142,19 +135,12 @@ kubectl get services
 | **Service** | **Docker Image Link** |
 
 |---------------------|-------------------------------------------|
-
 | Store-Front | `<Docker Hub Link>` |
-
 | Store-Admin | `<Docker Hub Link>` |
-
 | Order-Service | `<Docker Hub Link>` |
-
 | Product-Service | `<Docker Hub Link>` |
-
 | Makeline-Service | `<Docker Hub Link>` |
-
 | AI-Service | `<Docker Hub Link>` |
-
 | Database | `<Docker Hub Link>` |
 
 ---
