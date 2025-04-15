@@ -94,14 +94,14 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 | **Service** | **Repository Link** |
 |---------------------|-------------------------------------------|
 | Store-Front | https://github.com/zhao0294/store-front-bestbuy |
-| Store-Admin | [store-admin](https://github.com/zhao0294/store-admin-bestbuy) |
-| Order-Service | [order-service](https://github.com/zhao0294/order-service-bestbuy) |
-| Product-Service | [product-service](https://github.com/zhao0294/product-service-bestbuy) |
-| Makeline-Service |[makeline-service](https://github.com/zhao0294/makeline-service-bestbuy) |
-| AI-Service | [ai-service](https://github.com/zhao0294/ai-service-service) |
-| Mongodb(Database) | [mongodb](https://github.com/docker-library/mongo) |
-| Virtual-customer  | [virtual-customer](https://github.com/zhao0294/virtual-customer-bestbuy) |
-| Virtual-worker | [virtual-worker](https://github.com/zhao0294/virtual-worker-bestbuy) |
+| Store-Admin | https://github.com/zhao0294/store-admin-bestbuy |
+| Order-Service | https://github.com/zhao0294/order-service-bestbuy |
+| Product-Service | https://github.com/zhao0294/product-service-bestbuy |
+| Makeline-Service |https://github.com/zhao0294/makeline-service-bestbuy |
+| AI-Service | https://github.com/zhao0294/ai-service-service |
+| Mongodb(Database) | https://github.com/docker-library/mongo |
+| Virtual-customer  | https://github.com/zhao0294/virtual-customer-bestbuy |
+| Virtual-worker | https://github.com/zhao0294/virtual-worker-bestbuy |
 
 ---
 
