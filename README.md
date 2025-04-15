@@ -93,7 +93,7 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 
 | **Service** | **Repository Link** |
 |---------------------|-------------------------------------------|
-| Store-Front | [[store-front](https://github.com/zhao0294/store-front-bestbuy)] |
+| Store-Front | [(https://github.com/zhao0294/store-front-bestbuy)] |
 | Store-Admin | [store-admin](https://github.com/zhao0294/store-admin-bestbuy) |
 | Order-Service | [order-service](https://github.com/zhao0294/order-service-bestbuy) |
 | Product-Service | [product-service](https://github.com/zhao0294/product-service-bestbuy) |
