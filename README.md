@@ -93,15 +93,15 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 
 | **Service** | **Repository Link** |
 |---------------------|-------------------------------------------|
-| Store-Front | [store-front](https://github.com/ramymohamed10/store-front-L8) |
-| Store-Admin | [store-admin](https://github.com/ramymohamed10/store-admin-L8) |
+| Store-Front | [store-front](https://github.com/zhao0294/store-front-bestbuy) |
+| Store-Admin | [store-admin](https://github.com/zhao0294/store-admin-bestbuy) |
 | Order-Service | [order-service](https://github.com/zhao0294/order-service-bestbuy) |
-| Product-Service | [product-service](https://github.com/ramymohamed10/product-service-L8) |
+| Product-Service | [product-service](https://github.com/zhao0294/product-service-bestbuy) |
 | Makeline-Service |[makeline-service](https://github.com/zhao0294/makeline-service-bestbuy) |
-| AI-Service | [ai-service](https://github.com/ramymohamed10/ai-service-L8) |
+| AI-Service | [ai-service](https://github.com/zhao0294/ai-service-service) |
 | Mongodb(Database) | [mongodb](https://github.com/docker-library/mongo) |
-| Virtual-customer  | [virtual-customer](https://github.com/ramymohamed10/virtual-customer-L8) |
-| Virtual-worker | [virtual-worker](https://github.com/ramymohamed10/virtual-worker-L8) |
+| Virtual-customer  | [virtual-customer](https://github.com/zhao0294/virtual-customer-bestbuy) |
+| Virtual-worker | [virtual-worker](https://github.com/zhao0294/virtual-worker-bestbuy) |
 
 ---
 
@@ -109,12 +109,12 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 
 | **Service**         | **Docker Image Link**                     |
 |---------------------|-------------------------------------------|
-| Store-Front         | [ramymohamed/store-front-l8:latest](https://hub.docker.com/r/ramymohamed/store-front-l8)                     |
-| Store-Admin         | [ramymohamed/store-admin-l8:latest](https://hub.docker.com/r/ramymohamed/store-admin-l8)                     |
-| Order-Service       | [congzhao0294/order-service](https://hub.docker.com/r/congzhao0294/order-service)                      |
-| Product-Service     | [ramymohamed/product-service-l8:latest](https://hub.docker.com/r/ramymohamed/product-service-l8)                       |
-| Makeline-Service    | [congzhao0294/makeline-service](https://hub.docker.com/r/congzhao0294/makeline-service)                   |
-| AI-Service          | [ramymohamed/ai-service-l8:latest](https://hub.docker.com/r/ramymohamed/ai-service-l8)                     |
+| Store-Front         | [ramymohamed/store-front-l8:latest](https://hub.docker.com/r/congzhao0294/store-front)                     |
+| Store-Admin         | [ramymohamed/store-admin-l8:latest](https://hub.docker.com/r/congzhao0294/store-admin)                     |
+| Order-Service       | [congzhao0294/order-service:latest](https://hub.docker.com/r/congzhao0294/order-service)                      |
+| Product-Service     | [ramymohamed/product-service-l8:latest](https://hub.docker.com/r/congzhao0294/product-service)                       |
+| Makeline-Service    | [congzhao0294/makeline-service:latest](https://hub.docker.com/r/congzhao0294/makeline-service)                   |
+| AI-Service          | [ramymohamed/ai-service-l8:latest](https://hub.docker.com/r/congzhao0294/ai-service)                     |
 
 ---
 
