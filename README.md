@@ -109,12 +109,12 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 
 | **Service**         | **Docker Image Link**                     |
 |---------------------|-------------------------------------------|
-| Store-Front         | [ramymohamed/store-front-l8:latest](https://hub.docker.com/r/congzhao0294/store-front)                     |
-| Store-Admin         | [ramymohamed/store-admin-l8:latest](https://hub.docker.com/r/congzhao0294/store-admin)                     |
+| Store-Front         | [congzhao0294/store-front:latest](https://hub.docker.com/r/congzhao0294/store-front)                     |
+| Store-Admin         | [congzhao0294/store-admin:latest](https://hub.docker.com/r/congzhao0294/store-admin)                     |
 | Order-Service       | [congzhao0294/order-service:latest](https://hub.docker.com/r/congzhao0294/order-service)                      |
-| Product-Service     | [ramymohamed/product-service-l8:latest](https://hub.docker.com/r/congzhao0294/product-service)                       |
+| Product-Service     | [congzhao0294/product-service:latest](https://hub.docker.com/r/congzhao0294/product-service)                       |
 | Makeline-Service    | [congzhao0294/makeline-service:latest](https://hub.docker.com/r/congzhao0294/makeline-service)                   |
-| AI-Service          | [ramymohamed/ai-service-l8:latest](https://hub.docker.com/r/congzhao0294/ai-service)                     |
+| AI-Service          | [congzhao0294/ai-service:latest](https://hub.docker.com/r/congzhao0294/ai-service)                     |
 
 ---
 
