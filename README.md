@@ -91,17 +91,17 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 
 ## **Table of Microservice Repositories**
 
-| **Service** | **Repository Link** |
-|---------------------|-------------------------------------------|
-| Store-Front | https://github.com/zhao0294/store-front-bestbuy |
-| Store-Admin | https://github.com/zhao0294/store-admin-bestbuy |
-| Order-Service | https://github.com/zhao0294/order-service-bestbuy |
-| Product-Service | https://github.com/zhao0294/product-service-bestbuy |
-| Makeline-Service |https://github.com/zhao0294/makeline-service-bestbuy |
-| AI-Service | https://github.com/zhao0294/ai-service-service |
-| Mongodb(Database) | https://github.com/docker-library/mongo |
-| Virtual-customer  | https://github.com/zhao0294/virtual-customer-bestbuy |
-| Virtual-worker | https://github.com/zhao0294/virtual-worker-bestbuy |
+| **Service**         | **Repository Link**                                                                 |
+|---------------------|--------------------------------------------------------------------------------------|
+| Store-Front         | [store-front-bestbuy](https://github.com/zhao0294/store-front-bestbuy)              |
+| Store-Admin         | [store-admin-bestbuy](https://github.com/zhao0294/store-admin-bestbuy)              |
+| Order-Service       | [order-service-bestbuy](https://github.com/zhao0294/order-service-bestbuy)          |
+| Product-Service     | [product-service-bestbuy](https://github.com/zhao0294/product-service-bestbuy)      |
+| Makeline-Service    | [makeline-service-bestbuy](https://github.com/zhao0294/makeline-service-bestbuy)    |
+| AI-Service          | [ai-service-service](https://github.com/zhao0294/ai-service-service)                |
+| Mongodb(Database)   | [mongo](https://github.com/docker-library/mongo)                                    |
+| Virtual-customer    | [virtual-customer-bestbuy](https://github.com/zhao0294/virtual-customer-bestbuy)    |
+| Virtual-worker      | [virtual-worker-bestbuy](https://github.com/zhao0294/virtual-worker-bestbuy)        |
 
 ---
 
