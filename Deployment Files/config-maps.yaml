@@ -17,7 +17,7 @@ kind: ConfigMap
 metadata:
   name: makeline-service-config
 data:
-  ORDER_QUEUE_URI: "amqps://bestbuynamespace.servicebus.windows.net"
+  ORDER_QUEUE_URI: "amqps://bestbuyservicebus.servicebus.windows.net"
   ORDER_QUEUE_TRANSPORT: "tls"
   ORDER_QUEUE_NAME: "orders"
   ORDER_DB_URI: "mongodb://mongodb:27017"
