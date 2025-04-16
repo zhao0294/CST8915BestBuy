@@ -82,10 +82,10 @@ The application is built using a microservices architecture, with the following 
 
 ### 1. **Clone the Repository**
 
-   ```bash
+```bash
    git clone <your-repo-link>
    cd <your-repo-name>
-   ```
+```
 
 ### 2. **Use the Azure portal to create an Azure Service Bus**
 
@@ -235,56 +235,60 @@ Check **API key 1** in **Home**, encrypt it using base64, and fill it in the **O
 
 - use the command below:
   
-  ```bash
-  kubectl get nodes
-  ```
+```bash
+kubectl get nodes
+```
 
   you will see the output like this:
 
-  ```text
+```text
     NAME                                STATUS   ROLES   AGE     VERSION
     aks-systemnodes-xxxxx-vmss000000    Ready    agent   10m     v1.29.x
     aks-workernodes-xxxxx-vmss000001    Ready    agent   10m     v1.29.x
     aks-workernodes-xxxxx-vmss000002    Ready    agent   10m     v1.29.x
-  ```
+```
 
-### 5. **Deploy aps-all-in-one.yaml**
+### 5. **Deploy `aps-all-in-one.yaml`**
 
-- Deploy secrets.yaml
-  use the command below:
+- **Deploy `secrets.yaml`**  
+  Run the following command:
 
-  ```bash
-  kubectl apply -f secrets.yaml
-  ```
+```bash
+kubectl apply -f secrets.yaml
+```
 
-- Deploy config-maps.yaml
-  use the command below:
+- **Deploy `config-maps.yaml`**
+  Run the following command:
 
-  ```bash
+```bash
   kubectl apply -f config-maps.yaml
-  ```
+```
 
-- Deploy aps-all-in-one.yaml
-  use the command below:
+- **Deploy `aps-all-in-one.yaml`**
+  Run the following command:
 
-  ```bash
-  kubectl apply -f config-maps.yaml
-  ```
+```bash
+  kubectl apply -f aps-all-in-one.yaml
+```
   
 ### 6. **Verify the Deployment**
 
-- Check the **Workloads** at **Kubernetes resources**
-- Check the **services and ingressess**
+- Navigate to Kubernetes resources and check the **Workloads**
+- Inspect the **services and ingressess**
 - Open the website of **store-front** and **store-admin**
-- Use the website to make some orders and check the function
+- Place somet test orders through the websites to confirm functionality
 
 ### 7. **Verify the CI/CD**
 
-I deployed CI/CD on the following six microservices: order-service, product-service, makeline-service, store-front, store-admin, and ai-servcie.There is a `.github/workflows` folder in the root directory of each microservice, which contains `ci_cd.yaml`.
-We can modify one of the configurations (such as store-admin, other microservcies are similar) and verify the results of CI/CD after clicking commit.
+CI/CD has been configured for the following six microservices:
+`order-service`, `product-service`, `makeline-service`, `store-front`, `store-admin`, and `ai-service`.
+
+Each microservice includes a `.github/workflows` directory containing a `ci_cd.yaml` pipeline definition.
+To verify the CI/CD workflow, try making a small change to a service (e.g., store-admin) and commit the update.
+You should see the pipeline triggered automatically, and the results can be monitored in GitHub Actions.
 
 ---
 
 ## **Reminder**
 
-Please delete all resources created in this experiment.
+After testing, please make sure to delete all resources created during this experiment to avoid unnecessary charges or resource usage.
