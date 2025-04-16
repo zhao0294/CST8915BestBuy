@@ -80,14 +80,14 @@ The application is built using a microservices architecture, with the following 
 
 ### Deployment Steps
 
-1. **Clone the Repository**
+### 1. **Clone the Repository**
 
    ```bash
    git clone <your-repo-link>
    cd <your-repo-name>
    ```
 
-2. **Use the Azure portal to create an Azure Service Bus**
+### 2. **Use the Azure portal to create an Azure Service Bus**
 
 #### 2.1 Create a Resource Group (Skip if already created)
 
@@ -153,7 +153,7 @@ replace `string-need-to-base64-encoded` with the field you need to encrypt, and 
 - The **ORDER_QUEUE_USERNAME** field is filled with the encrypted field of the `sender`, and the **ORDER_QUEUE_PASSWORD** field is filled with the encrypted field of the `Primary key`. You can view the Primary key in this path: `Shared access policies` → `sender` → `Primary key`.
 - The **ORDER_QUEUE_LISTENER_USERNAME** field is filled with the encrypted field of the `listener`, and the **ORDER_QUEUE_LISTENER_PASSWORD** field is filled with the encrypted field of the `Primary key`. You can view the Primary key in this path: `Shared access policies` → `listener` → `Primary key`.
 
-3. **Use the Azure portal to create Azure OpenAI Service**
+### 3. **Use the Azure portal to create Azure OpenAI Service**
 
 #### 3.1 Create an Azure OpenAI servcie
 
@@ -188,7 +188,7 @@ Modify the environment variable in `ai-service` in `aps-all-in-one.yaml`. Set **
 
 Check **API key 1** in **Home**, encrypt it using base64, and fill it in the **OPENAI_API_KEY** field in `openai-api-secret` in `secrets.yaml`.
 
-4. **Use the Azure portal to create Azure Kubernetes Clusters**
+### 4. **Use the Azure portal to create Azure Kubernetes Clusters**
 
 #### 4.1 Create a Kubernetes Cluster
 
@@ -242,7 +242,7 @@ Check **API key 1** in **Home**, encrypt it using base64, and fill it in the **O
     aks-workernodes-xxxxx-vmss000002    Ready    agent   10m     v1.29.x
   ```
 
-5. **Deploy aps-all-in-one.yaml**
+### 5. **Deploy aps-all-in-one.yaml**
 
 - Deploy secrets.yaml
   use the command below:
@@ -265,14 +265,14 @@ Check **API key 1** in **Home**, encrypt it using base64, and fill it in the **O
   kubectl apply -f config-maps.yaml
   ```
   
-6. **Verify the Deployment**
+### 6. **Verify the Deployment**
 
 - Check the **Workloads** at **Kubernetes resources**
 - Check the **services and ingressess**
 - Open the website of **store-front** and **store-admin**
 - Use the website to make some orders and check the function
 
-7. **Verify the CI/CD**
+### 7. **Verify the CI/CD**
 
 I deployed CI/CD on the following six microservices: order-service, product-service, makeline-service, store-front, store-admin, and ai-servcie.There is a `.github/workflows` folder in the root directory of each microservice, which contains `ci_cd.yaml`.
 We can modify one of the configurations (such as store-admin, other microservcies are similar) and verify the results of CI/CD after clicking commit.
