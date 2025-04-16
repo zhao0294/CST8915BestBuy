@@ -137,8 +137,8 @@ You can click on each policy to view its Primary key and Connection string for s
 
 #### 2.5 Modify Environment Variables in **config-maps.yaml**
 
-Modify the **ORDER_QUEUE_HOSTNAME** field in `metadata` `order-service-config` in **config-maps.yaml**. The field is found under Namespace `Overview` → `Essentials` → `Host name`.
-Modify the **ORDER_QUEUE_URI** field in `metadata` `makeline-service-config` in **config-maps.yaml**. The format of this field is: `amqps://<hostname>`, the field `hostname` is found under Namespace `Overview` → `Essentials` → `Host name`.
+- Modify the **ORDER_QUEUE_HOSTNAME** field in `metadata` `order-service-config` in **config-maps.yaml**. The field is found under Namespace `Overview` → `Essentials` → `Host name`.
+- Modify the **ORDER_QUEUE_URI** field in `metadata` `makeline-service-config` in **config-maps.yaml**. The format of this field is: `amqps://<hostname>`, the field `hostname` is found under Namespace `Overview` → `Essentials` → `Host name`.
 
 #### 2.6 Modify Environment Variables in **secrets.yaml**
 
@@ -150,8 +150,10 @@ echo -n “string-need-to-base64-encoded” | base64
 
 replace `string-need-to-base64-encoded` with the field you need to encrypt, and fill the output of the command into the environment variable that needs to be filled in.
 
-- The **ORDER_QUEUE_USERNAME** field is filled with the encrypted field of the `sender`, and the **ORDER_QUEUE_PASSWORD** field is filled with the encrypted field of the `Primary key`. You can view the Primary key in this path: `Shared access policies` → `sender` → `Primary key`.
-- The **ORDER_QUEUE_LISTENER_USERNAME** field is filled with the encrypted field of the `listener`, and the **ORDER_QUEUE_LISTENER_PASSWORD** field is filled with the encrypted field of the `Primary key`. You can view the Primary key in this path: `Shared access policies` → `listener` → `Primary key`.
+- The **ORDER_QUEUE_USERNAME** field is filled with the encrypted field of the `sender`
+- The **ORDER_QUEUE_PASSWORD** field is filled with the encrypted field of the `Primary key`. You can view the Primary key in this path: `Shared access policies` → `sender` → `Primary key`.
+- The **ORDER_QUEUE_LISTENER_USERNAME** field is filled with the encrypted field of the `listener`
+- The **ORDER_QUEUE_LISTENER_PASSWORD** field is filled with the encrypted field of the `Primary key`. You can view the Primary key in this path: `Shared access policies` → `listener` → `Primary key`.
 
 ### 3. **Use the Azure portal to create Azure OpenAI Service**
 
@@ -184,7 +186,11 @@ replace `string-need-to-base64-encoded` with the field you need to encrypt, and 
 
 #### 3.4 Connect to the Azure OpenAI
 
-Modify the environment variable in `ai-service` in `aps-all-in-one.yaml`. Set **AZURE_OPENAI_ENDPOINT** and **AZURE_OPENAI_DALLE_ENDPOINT** to the `Azure Openai Service endpoint`. You can copy the string in **Home**. You can view the corresponding `names` of **AZURE_OPENAI_DEPLOYMENT_NAME** and **AZURE_OPENAI_DALLE_DEPLOYMENT_NAME** in **Deployment**.
+- Modify the environment variable in `ai-service` in `aps-all-in-one.yaml`.
+  
+  - Set **AZURE_OPENAI_ENDPOINT** and **AZURE_OPENAI_DALLE_ENDPOINT** to the `Azure Openai Service endpoint`. You can copy the string in **Home**.
+  
+  - You can view the corresponding `names` of **AZURE_OPENAI_DEPLOYMENT_NAME** and **AZURE_OPENAI_DALLE_DEPLOYMENT_NAME** in **Deployment**.
 
 Check **API key 1** in **Home**, encrypt it using base64, and fill it in the **OPENAI_API_KEY** field in `openai-api-secret` in `secrets.yaml`.
 
