@@ -9,6 +9,12 @@ The application includes several services for different user interactions, such 
 
 ---
 
+## **Architecture Diagram**
+
+![Architecture Diagram](8915Final.jpg)
+
+---
+
 ## **Application Architecture**
 
 The application architecture is designed using the following microservices:
@@ -22,13 +28,7 @@ The application architecture is designed using the following microservices:
 - **Database**: MongoDB for persisting order and product data.
 - **Virtual-customer**: Simulates order creation on a scheduled basis (Rust).
 - **Virtual-worker**: Simulates order completion on a scheduled basis (Rust).
-
----
-
-## **Architecture Diagram**
-
-![Architecture Diagram](8915Final.jpg)
-
+  
 ---
 
 ## **Application and Architecture Explanation**
@@ -39,53 +39,6 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 - **Backend**: The **Order-Service** handles order creation and interacts with the **Order Queue Service** (Azure Service Bus) to ensure smooth order processing. The **Makeline-Service** listens to the queue and completes the orders.
 - **Product Data**: The **Product-Service** manages CRUD operations for products stored in MongoDB.
 - **AI Integration**: The **AI-Service** generates AI-powered product descriptions and images using **Azure OpenAI Services** (GPT-4 and DALL-E).
-
----
-
-## **Deployment Instructions**
-
-### **Prerequisites**
-
-- Kubernetes cluster (can be set up using Azure AKS or any other Kubernetes provider).
-- Docker for building and pushing images.
-- Azure account for using Azure Service Bus and Azure OpenAI Services.
-
-### **Steps to Deploy**
-
-1. **Clone the Repository**
-
-    ```bash
-    git clone <your-repo-link>
-    cd <your-repo-name>
-    ```
-
-2. **Build Docker Images for All Services**
-    - For each service, navigate to the service directory and build the Docker image.
-
-    ```bash
-    docker build -t <docker-hub-username>/<service-name>:<tag> .
-    docker push <docker-hub-username>/<service-name>:<tag>
-    ```
-
-3. **Set Up Azure Service Bus**
-    - Create an Azure Service Bus and obtain the connection string.
-    - Replace the connection string in the Kubernetes secrets.
-
-4. **Configure Kubernetes Manifests**
-    - Modify the Kubernetes manifests for each service to use the Docker images and configure the necessary secrets and environment variables.
-    - Deploy using `kubectl`:
-
-    ```bash
-    kubectl apply -f k8s/
-    ```
-
-5. **Verify the Deployment**
-    - Check the status of the deployed services:
-
-    ```bash
-    kubectl get pods
-    kubectl get services
-    ```
 
 ---
 
@@ -118,14 +71,215 @@ The **Best Buy App** leverages a microservices architecture to separate the conc
 
 ---
 
-## **Issues and Limitations (Optional)**
+## **Deployment Instructions**
 
-- **Scaling**: We are using Kubernetes to manage scalability, but scaling specific services (like AI-Service) based on demand may require fine-tuning.
-- **Azure Service Bus**: The integration with Azure Service Bus requires setting up appropriate Azure services and network configurations.
-- **AI Response Time**: The AI-generated descriptions and images may take time, depending on the request load and API usage limits.
+### **Prerequisites**
+
+- Kubernetes cluster (can be set up using Azure AKS or any other Kubernetes provider).
+- Docker for building and pushing images.
+- Azure account for using Azure Service Bus and Azure OpenAI Services.
+
+### **Steps to Deploy**
+
+1. **Clone the Repository**
+
+    ```bash
+    git clone <your-repo-link>
+    cd <your-repo-name>
+    ```
+
+2. **Use the Azure portal to create an Azure Service Bus**
+
+#### 2.1 Create a Resource Group (Skip if already created)
+
+- Go to [Azure Portal](https://portal.azure.com).
+- Search for **"Resource groups"** and open the service.
+- Click **+ Create**.
+- Fill in:
+  - **Resource Group Name**: e.g., `CST8915FinalProject`
+  - **Region**: e.g., `Canada Central`
+- Click **Review + Create** → **Create**
+
+#### 2.2 Create a Service Bus Namespace
+
+- Search for **"Service Bus"** in the Azure Portal and open the service.
+- Click **+ Create**.
+- Fill in the required fields:
+  - **Subscription**
+  - **Resource Group**: Select the one created above
+  - **Namespace Name**: e.g., `bestbuynamespace`
+  - **Region**
+  - **Pricing Tier**: Choose **Standard** or **Premium**
+- Click **Review + Create** → **Create**
+
+#### 2.3 Create a Queue
+
+- Go to your **Service Bus Namespace**.
+- In the left menu, select **Queues**.
+- Click **+ Queue**.
+- Fill in:
+  - **Queue Name**: e.g., `orders`
+- Click **Create**
+
+#### 2.4 Create sender and listener policies
+
+- Click on the queue you just created
+- Select **Shared access policies** in the left menu
+- Click **+ Add**
+  - **Policy name**: `sender`
+  - Permissions: Check `Send`
+  - Click **Create**
+- Click + Add again
+  - **Policy name**: `listener`
+  - Permissions: Check `Listen`
+  - Click **Create**
+
+You can click on each policy to view its Primary key and Connection string for subsequent encryption and configuration.
+
+#### 2.5 Modify Environment Variables in **config-maps.yaml**
+
+Modify the **ORDER_QUEUE_HOSTNAME** field in `metadata` `order-service-config` in **config-maps.yaml**. The field is found under Namespace `Overview` → `Essentials` → `Host name`.
+Modify the **ORDER_QUEUE_URI** field in `metadata` `makeline-service-config` in **config-maps.yaml**. The format of this field is: `amqps://<hostname>`, the field `hostname` is found under Namespace `Overview` → `Essentials` → `Host name`.
+
+#### 2.6 Modify Environment Variables in **secrets.yaml**
+
+In secrets.yaml, as the type of the environment variable is set to data, base64-encoded must be filled in. You can use:
+
+```bash
+echo -n “string-need-to-base64-encoded” | base64
+```
+
+replace `string-need-to-base64-encoded` with the field you need to encrypt, and fill the output of the command into the environment variable that needs to be filled in.
+
+- The **ORDER_QUEUE_USERNAME** field is filled with the encrypted field of the `sender`, and the **ORDER_QUEUE_PASSWORD** field is filled with the encrypted field of the `Primary key`. You can view the Primary key in this path: `Shared access policies` → `sender` → `Primary key`.
+- The **ORDER_QUEUE_LISTENER_USERNAME** field is filled with the encrypted field of the `listener`, and the **ORDER_QUEUE_LISTENER_PASSWORD** field is filled with the encrypted field of the `Primary key`. You can view the Primary key in this path: `Shared access policies` → `listener` → `Primary key`.
+
+3. **Use the Azure portal to create Azure OpenAI Service**
+
+#### 3.1 Create an Azure OpenAI servcie
+
+- Go to [Azure Portal](https://portal.azure.com).
+- Search for “Kubernetes services” and open the service.
+- Fill in the Basics tab:
+  - **Resource group**: Select the Resource group you created in 2.1
+  - **Region**: same as 2.2
+  - **Pricing tier**
+  - Click **Next** to continue
+  - Click **create** to create
+
+#### 3.2 Deploy gpt-4
+
+- Click the OpenAI you just created
+- Click **Explore Azure AI Foundry portal**
+- Click **Model catalog**
+- **search** `gpt-4` and then click **Deploy**
+- click **Create resource and deploy**
+- click **Open in playground** to test the deployment
+  
+#### 3.3 Deploy dall-e-3
+
+- Click **Model catalog**
+- **search** `dall-e-3` and then click **Deploy**
+- click **Create resource and deploy**
+- click **Open in playground** to test the deployment
+
+#### 3.4 Connect to the Azure OpenAI
+
+Modify the environment variable in `ai-service` in `aps-all-in-one.yaml`. Set **AZURE_OPENAI_ENDPOINT** and **AZURE_OPENAI_DALLE_ENDPOINT** to the `Azure Openai Service endpoint`. You can copy the string in **Home**. You can view the corresponding `names` of **AZURE_OPENAI_DEPLOYMENT_NAME** and **AZURE_OPENAI_DALLE_DEPLOYMENT_NAME** in **Deployment**.
+
+Check **API key 1** in **Home**, encrypt it using base64, and fill it in the **OPENAI_API_KEY** field in `openai-api-secret` in `secrets.yaml`.
+
+4. **Use the Azure portal to create Azure Kubernetes Clusters**
+
+#### 4.1 Create a Kubernetes Cluster
+
+- Go to [Azure Portal](https://portal.azure.com).
+- Search for “Azure OpenAI” and open the service.
+- Click **+ Create Azure OpenAI**.
+- Fill in the Basics tab:
+  - **Subscription**
+  - **Resource Group**: Select the Resource group you created in 2.1
+  - **Cluster Name**: e.g., bestbuyakscluster
+  - **Region**: e.g., Canada Central
+  - **Kubernetes version**: Select a stable version (e.g., 1.29.x)
+  - Click **Next** through the tabs, accepting defaults or adjusting as needed.
+
+#### 4.2 Node Pool Configuration
+
+- In the Node pools tab:
+- Set up a `systemnodes` and choose the appropriate node size
+  - **Scale method**: Manual
+  - **Node count**: 1
+- Set up two `workernodes` and choose the appropriate node size
+  - **Scale method**: Manual
+  - Node count: 2
+
+#### 4.3 Review and Create
+
+- Click **Review + Create**
+  - After validation, click **Create**
+
+#### 4.4 Connect to the Azure Kubernetes Cluster
+
+- Click the Kubernetes service you just created
+- Click **Connect** on the top
+- Click **Azure CLI**
+- Connect to the Kubernets service according to the steps
+  
+#### 4.5 Verfiy the connetion
+
+- use the command below:
+  
+  ```bash
+  kubectl get nodes
+  ```
+
+  you will see the output like this:
+
+  ```text
+    NAME                                STATUS   ROLES   AGE     VERSION
+    aks-systemnodes-xxxxx-vmss000000    Ready    agent   10m     v1.29.x
+    aks-workernodes-xxxxx-vmss000001    Ready    agent   10m     v1.29.x
+    aks-workernodes-xxxxx-vmss000002    Ready    agent   10m     v1.29.x
+  ```
+
+5. **Deploy aps-all-in-one.yaml**
+
+- Deploy secrets.yaml
+  use the command below:
+
+  ```bash
+  kubectl apply -f secrets.yaml
+  ```
+
+- Deploy config-maps.yaml
+  use the command below:
+
+  ```bash
+  kubectl apply -f config-maps.yaml
+  ```
+
+- Deploy aps-all-in-one.yaml
+  use the command below:
+
+  ```bash
+  kubectl apply -f config-maps.yaml
+  ```
+  
+6. **Verify the Deployment**
+
+- Check the **Workloads** at **Kubernetes resources**
+- Check the **services and ingressess**
+- Open the website of **store-front** and **store-admin**
+- Use the website to make some orders and check the function
+
+7. **Verify the CI/CD**
+
+I deployed CI/CD on the following six microservices: order-service, product-service, makeline-service, store-front, store-admin, and ai-servcie.There is a `.github/workflows` folder in the root directory of each microservice, which contains `ci_cd.yaml`.
+We can modify one of the configurations (such as store-admin, other microservcies are similar) and verify the results of CI/CD after clicking commit.
 
 ---
 
-## **License**
+## **Reminder**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Please delete all resources created in this experiment.
