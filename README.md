@@ -299,6 +299,16 @@ Use the content of this file as the value for the `KUBE_CONFIG_DATA` secret in G
 
 ---
 
+## **Demo Video**
+
+Please refer to the demo video below.
+
+[![Watch the video](https://img.youtube.com/vi/4drSkBW4ThU/0.jpg)](https://youtu.be/4drSkBW4ThU)
+
+The video length is about 20 minutes. If you feel that the speed is too slow, you can adjust the playback speed appropriately. This will not affect the display of the video content.
+
+---
+
 ## **Reminder**
 
 After testing, please make sure to delete all resources created during this experiment to avoid unnecessary charges or resource usage.
