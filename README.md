@@ -1,92 +1,91 @@
+# Best Buy Cloud-Native Application
 
-# Full-Stack Cloud-Native Application for Best Buy
+## Overview
 
-## **Overview**
+This project is a cloud-native application for Best Buy's online store, built with a microservices architecture, deployed on Kubernetes, and leveraging Azure-managed services. It is inspired by the **Algonquin Pet Store (On Steroids)** design, with a key modification: the **Order Queue Service** uses **Azure Service Bus** instead of RabbitMQ.
 
-This project is a cloud-native application developed for Best Buy's online store using microservices architecture, Kubernetes, and Azure-managed services. The application follows the design principles of the **Algonquin Pet Store (On Steroids)** with a key modification: the **Order Queue Service** is implemented using **Azure Service Bus** instead of RabbitMQ.
-
-The application includes several services for different user interactions, such as browsing products, managing orders, and generating AI-powered product descriptions and images using GPT-4 and DALL-E.
+The application supports user interactions such as browsing products, managing orders, and generating AI-powered product descriptions and images using Azure OpenAI Services (GPT-4 and DALL-E).
 
 ---
 
-## **Architecture Diagram**
+## Architecture Diagram
 
 ![Architecture Diagram](8915Final.jpg)
 
 ---
 
-## **Application Architecture**
+## Application Architecture
 
-The application architecture is designed using the following microservices:
+The application is built using a microservices architecture, with the following components:
 
-- **Store-Front**: Customer-facing app for browsing and placing orders.
-- **Store-Admin**: Employee-facing app for managing products and viewing orders.
-- **Order-Service**: Handles order creation and sends data to the managed order queue (Azure Service Bus).
-- **Product-Service**: Handles CRUD operations for product data.
-- **Makeline-Service**: Processes and completes orders by reading from the order queue.
-- **AI-Service**: Generates product descriptions and images using GPT-4 and DALL-E models.
-- **Database**: MongoDB for persisting order and product data.
-- **Virtual-customer**: Simulates order creation on a scheduled basis (Rust).
-- **Virtual-worker**: Simulates order completion on a scheduled basis (Rust).
-  
----
-
-## **Application and Architecture Explanation**
-
-The **Best Buy App** leverages a microservices architecture to separate the concerns of different services such as product management, order management, and order fulfillment. The key components include:
-
-- **Frontend**: The **Store-Front** is the customer-facing application where users can browse products and place orders.
-- **Backend**: The **Order-Service** handles order creation and interacts with the **Order Queue Service** (Azure Service Bus) to ensure smooth order processing. The **Makeline-Service** listens to the queue and completes the orders.
-- **Product Data**: The **Product-Service** manages CRUD operations for products stored in MongoDB.
-- **AI Integration**: The **AI-Service** generates AI-powered product descriptions and images using **Azure OpenAI Services** (GPT-4 and DALL-E).
+- **Store-Front**: Customer-facing web app for browsing products and placing orders.
+- **Store-Admin**: Employee-facing web app for managing products and viewing orders.
+- **Order-Service**: Manages order creation and sends orders to the Azure Service Bus queue.
+- **Product-Service**: Handles CRUD operations for product data stored in MongoDB.
+- **Makeline-Service**: Processes and completes orders by consuming messages from the Azure Service Bus queue.
+- **AI-Service**: Generates product descriptions and images using Azure OpenAI (GPT-4 and DALL-E).
+- **Database**: MongoDB for persisting product and order data.
+- **Virtual-Customer**: Simulates order creation on a scheduled basis (written in Rust).
+- **Virtual-Worker**: Simulates order completion on a scheduled basis (written in Rust).
 
 ---
 
-## **Table of Microservice Repositories**
+## Key Features
 
-| **Service**         | **Repository Link**                                                                 |
-|---------------------|--------------------------------------------------------------------------------------|
-| Store-Front         | [store-front-bestbuy](https://github.com/zhao0294/store-front-bestbuy)              |
-| Store-Admin         | [store-admin-bestbuy](https://github.com/zhao0294/store-admin-bestbuy)              |
-| Order-Service       | [order-service-bestbuy](https://github.com/zhao0294/order-service-bestbuy)          |
-| Product-Service     | [product-service-bestbuy](https://github.com/zhao0294/product-service-bestbuy)      |
-| Makeline-Service    | [makeline-service-bestbuy](https://github.com/zhao0294/makeline-service-bestbuy)    |
-| AI-Service          | [ai-service-service](https://github.com/zhao0294/ai-service-service)                |
-| Mongodb(Database)   | [mongo](https://github.com/docker-library/mongo)                                    |
-| Virtual-customer    | [virtual-customer-bestbuy](https://github.com/zhao0294/virtual-customer-bestbuy)    |
-| Virtual-worker      | [virtual-worker-bestbuy](https://github.com/zhao0294/virtual-worker-bestbuy)        |
+- **Microservices**: Each service is independently deployable and scalable.
+- **Message Queue**: Azure Service Bus ensures reliable order processing.
+- **AI Integration**: GPT-4 generates product descriptions, and DALL-E creates product images.
+- **Database**: MongoDB provides flexible and scalable data storage.
+- **Automation**: Virtual-Customer and Virtual-Worker simulate real-world interactions.
 
 ---
 
-## **Table of Docker Images**
+## Microservice Repositories
 
-| **Service**         | **Docker Image Link**                     |
-|---------------------|-------------------------------------------|
-| Store-Front         | [congzhao0294/store-front:latest](https://hub.docker.com/r/congzhao0294/store-front)                     |
-| Store-Admin         | [congzhao0294/store-admin:latest](https://hub.docker.com/r/congzhao0294/store-admin)                     |
-| Order-Service       | [congzhao0294/order-service:latest](https://hub.docker.com/r/congzhao0294/order-service)                      |
-| Product-Service     | [congzhao0294/product-service:latest](https://hub.docker.com/r/congzhao0294/product-service)                       |
-| Makeline-Service    | [congzhao0294/makeline-service:latest](https://hub.docker.com/r/congzhao0294/makeline-service)                   |
-| AI-Service          | [congzhao0294/ai-service:latest](https://hub.docker.com/r/congzhao0294/ai-service)                     |
+| Service             | Repository Link                                                                 |
+|---------------------|---------------------------------------------------------------------------------|
+| Store-Front         | [store-front-bestbuy](https://github.com/zhao0294/store-front-bestbuy)          |
+| Store-Admin         | [store-admin-bestbuy](https://github.com/zhao0294/store-admin-bestbuy)          |
+| Order-Service       | [order-service-bestbuy](https://github.com/zhao0294/order-service-bestbuy)      |
+| Product-Service     | [product-service-bestbuy](https://github.com/zhao0294/product-service-bestbuy)  |
+| Makeline-Service    | [makeline-service-bestbuy](https://github.com/zhao0294/makeline-service-bestbuy)|
+| AI-Service          | [ai-service-service](https://github.com/zhao0294/ai-service-service)            |
+| MongoDB (Database)  | [mongo](https://github.com/docker-library/mongo)                                |
+| Virtual-Customer    | [virtual-customer-bestbuy](https://github.com/zhao0294/virtual-customer-bestbuy)|
+| Virtual-Worker      | [virtual-worker-bestbuy](https://github.com/zhao0294/virtual-worker-bestbuy)    |
 
 ---
 
-## **Deployment Instructions**
+## Docker Images
 
-### **Prerequisites**
+| Service             | Docker Image Link                                                                 |
+|---------------------|-----------------------------------------------------------------------------------|
+| Store-Front         | [congzhao0294/store-front:latest](https://hub.docker.com/r/congzhao0294/store-front)         |
+| Store-Admin         | [congzhao0294/store-admin:latest](https://hub.docker.com/r/congzhao0294/store-admin)         |
+| Order-Service       | [congzhao0294/order-service:latest](https://hub.docker.com/r/congzhao0294/order-service)     |
+| Product-Service     | [congzhao0294/product-service:latest](https://hub.docker.com/r/congzhao0294/product-service) |
+| Makeline-Service    | [congzhao0294/makeline-service:latest](https://hub.docker.com/r/congzhao0294/makeline-service) |
+| AI-Service          | [congzhao0294/ai-service:latest](https://hub.docker.com/r/congzhao0294/ai-service)           |
 
-- Kubernetes cluster (can be set up using Azure AKS or any other Kubernetes provider).
-- Docker for building and pushing images.
-- Azure account for using Azure Service Bus and Azure OpenAI Services.
+---
 
-### **Steps to Deploy**
+## Deployment Instructions
+
+### Prerequisites
+
+- **Kubernetes Cluster**: Azure AKS or any Kubernetes provider.
+- **Docker**: For building and pushing images.
+- **Azure Account**: For Azure Service Bus and Azure OpenAI Services.
+- **Tools**: `kubectl`, Azure CLI.
+
+### Deployment Steps
 
 1. **Clone the Repository**
 
-    ```bash
-    git clone <your-repo-link>
-    cd <your-repo-name>
-    ```
+   ```bash
+   git clone <your-repo-link>
+   cd <your-repo-name>
+   ```
 
 2. **Use the Azure portal to create an Azure Service Bus**
 
