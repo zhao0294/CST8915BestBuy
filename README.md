@@ -287,6 +287,16 @@ Each microservice includes a `.github/workflows` directory containing a `ci_cd.y
 To verify the CI/CD workflow, try making a small change to a service (e.g., store-admin) and commit the update.
 You should see the pipeline triggered automatically, and the results can be monitored in GitHub Actions.
 
+I have configured other parameters and only need to modify `KUBE_CONFIG_DATA` to verify.
+`KUBE_CONFIG_DATA`: Base64-encoded content of your Kubernetes configuration file (kubeconfig). This is used for authentication with your Kubernetes cluster.
+Run the following commands to get `KUBE_CONFIG_DATA` after connecting to your AKS cluster:
+
+```bash
+  cat ~/.kube/config | base64 -w 0 > kube_config_base64.txt
+```
+
+Use the content of this file as the value for the `KUBE_CONFIG_DATA` secret in GitHub.
+
 ---
 
 ## **Reminder**
