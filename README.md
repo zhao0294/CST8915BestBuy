@@ -83,8 +83,8 @@ The application is built using a microservices architecture, with the following 
 ### 1. **Clone the Repository**
 
 ```bash
-   git clone <your-repo-link>
-   cd <your-repo-name>
+    git clone <your-repo-link>
+    cd <your-repo-name>
 ```
 
 ### 2. **Use the Azure portal to create an Azure Service Bus**
@@ -145,7 +145,7 @@ You can click on each policy to view its Primary key and Connection string for s
 In secrets.yaml, as the type of the environment variable is set to data, base64-encoded must be filled in. You can use:
 
 ```bash
-echo -n “string-need-to-base64-encoded” | base64
+    echo -n “string-need-to-base64-encoded” | base64
 ```
 
 replace `string-need-to-base64-encoded` with the field you need to encrypt, and fill the output of the command into the environment variable that needs to be filled in.
@@ -236,7 +236,7 @@ Check **API key 1** in **Home**, encrypt it using base64, and fill it in the **O
 - use the command below:
   
 ```bash
-kubectl get nodes
+    kubectl get nodes
 ```
 
   you will see the output like this:
@@ -254,21 +254,21 @@ kubectl get nodes
   Run the following command:
 
 ```bash
-kubectl apply -f secrets.yaml
+    kubectl apply -f secrets.yaml
 ```
 
 - **Deploy `config-maps.yaml`**
   Run the following command:
 
 ```bash
-  kubectl apply -f config-maps.yaml
+    kubectl apply -f config-maps.yaml
 ```
 
 - **Deploy `aps-all-in-one.yaml`**
   Run the following command:
 
 ```bash
-  kubectl apply -f aps-all-in-one.yaml
+    kubectl apply -f aps-all-in-one.yaml
 ```
   
 ### 6. **Verify the Deployment**
