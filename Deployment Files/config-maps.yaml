@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: order-service-config
 data:
-  ORDER_QUEUE_HOSTNAME: "finalprojectnamespace.servicebus.windows.net"
+  ORDER_QUEUE_HOSTNAME: "testfinal.servicebus.windows.net"
   ORDER_QUEUE_PORT: "5671"
   USE_WORKLOAD_IDENTITY_AUTH: "True"
   ORDER_QUEUE_NAME: "orders"
@@ -17,7 +17,7 @@ kind: ConfigMap
 metadata:
   name: makeline-service-config
 data:
-  ORDER_QUEUE_URI: "amqps://finalprojectnamespace.servicebus.windows.net"
+  ORDER_QUEUE_URI: "amqps://testfinal.servicebus.windows.net"
   ORDER_QUEUE_TRANSPORT: "tls"
   ORDER_QUEUE_NAME: "orders"
   ORDER_DB_URI: "mongodb://mongodb:27017"
