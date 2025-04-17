@@ -303,7 +303,7 @@ Use the content of this file as the value for the `KUBE_CONFIG_DATA` secret in G
 
 Please refer to the demo video below.
 
-[▶️ Watch the video](https://youtu.be/4drSkBW4ThU)
+[▶️ Watch the video](https://youtu.be/n9Ocma10O2A)
 
 The video length is about 20 minutes.  
 If you feel that the speed is too slow, you can adjust the playback speed appropriately.  

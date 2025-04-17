@@ -408,21 +408,22 @@ spec:
       containers:
         - name: ai-service
           image: congzhao0294/ai-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5001
           env:
-            - name: USE_AZURE_OPENAI # set to True for Azure OpenAI, False for Public OpenAI
-              value: "True"
+            - name: USE_AZURE_OPENAI # set to true for Azure OpenAI, false for Public OpenAI
+              value: "true"
             - name: AZURE_OPENAI_API_VERSION
               value: "2024-07-01-preview"
             - name: AZURE_OPENAI_DEPLOYMENT_NAME # required if using Azure OpenAI
-              value: "dall-e-3"
-            - name: AZURE_OPENAI_ENDPOINT # required if using Azure OpenAI
-              value: "https://zhao0-m9k53og0-eastus2.cognitiveservices.azure.com/"
-            - name: AZURE_OPENAI_DALLE_ENDPOINT
-              value: "https://zhao0-m9k53og0-eastus2.cognitiveservices.azure.com/"
-            - name: AZURE_OPENAI_DALLE_DEPLOYMENT_NAME
               value: "gpt-4"
+            - name: AZURE_OPENAI_ENDPOINT # required if using Azure OpenAI
+              value: "https://zhao0-m9kobaac-swedencentral.cognitiveservices.azure.com/"
+            - name: AZURE_OPENAI_DALLE_ENDPOINT
+              value: "https://zhao0-m9kobaac-swedencentral.cognitiveservices.azure.com/"
+            - name: AZURE_OPENAI_DALLE_DEPLOYMENT_NAME
+              value: "dall-e-3"
             - name: OPENAI_API_KEY # always required
               valueFrom:
                 secretKeyRef:
@@ -430,11 +431,11 @@ spec:
                   key: OPENAI_API_KEY
           resources:
             requests:
-              cpu: 20m
-              memory: 50Mi
+              cpu: 250m
+              memory: 512Mi
             limits:
-              cpu: 50m
-              memory: 128Mi
+              cpu: 500m
+              memory: 512Mi
           startupProbe:
             httpGet:
               path: /health
