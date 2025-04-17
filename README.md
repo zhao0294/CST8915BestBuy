@@ -305,10 +305,6 @@ Please refer to the demo video below.
 
 [▶️ Watch the video](https://youtu.be/n9Ocma10O2A)
 
-The video length is about 20 minutes.  
-If you feel that the speed is too slow, you can adjust the playback speed appropriately.  
-This will not affect the display of the video content.
-
 ---
 
 ## **Reminder**
